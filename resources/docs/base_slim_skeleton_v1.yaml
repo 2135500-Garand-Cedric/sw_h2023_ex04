@@ -1,0 +1,225 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Base-Slim-Skeleton
+  description: Structure de base d'un api créé dans le cadre du cours Services Web H2023
+  
+servers: 
+  - url: http://localhost/base-slim-skeleton
+paths:
+  /:
+    get:
+      tags:
+        - Général
+      summary: Message de bienvenue
+      responses:
+        '200': 
+          description: 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                example:
+                    success: true
+                    message : 'Hello world!'
+  
+  /users:
+    put:
+      tags: 
+        - Usagers
+      summary: Recevoir une nouvelle cle d'api.
+      requestBody:
+        description: Le nom d'utilisateur et le mot de passe
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nom_usager:
+                  type: string
+                mot_de_passe:
+                  type: string
+              example:
+                nom_usager: "cedric"
+                mot_de_passe: "qwerty"
+      responses:
+        '200':
+          description: La nouvelle cle d'api genere
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cle_api:
+                    type: string
+                example:
+                  id : "laflw74t"
+  /pokemon:
+    get:
+      tags:
+        - Pokemon
+      summary: Voir la liste de tous les pokemons.
+      responses:
+        '200':
+          description: Un tableau de pokemons.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  nom:
+                    type: string
+                  type:
+                    type: string
+                  pv:
+                    type: integer
+                example:
+                  id: 1
+                  nom: 'Charmander'
+                  type: 'feu'
+                  pv: 40
+    post:
+      tags:
+        - Pokemon
+      summary: Ajouter un pokemon.
+      requestBody:
+        description: Les informations du pokemon a ajouter
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nom:
+                  type: string
+                type:
+                  type: string
+                pv:
+                  type: integer
+              example:
+                nom: 'pikachu'
+                type: 'electricite'
+                pv: 100
+      responses:
+        '201':
+          description: Les informations du pokemon ajoute
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  nom:
+                    type: string
+                  type:
+                    type: string
+                  pv:
+                    type: integer
+                example:
+                  id: 11
+                  nom: 'pikachu'
+                  type: 'electricite'
+                  pv: 100
+  /pokemon/{id}:
+    delete:
+      tags:
+        - Pokemon
+      summary: Supprimer un pokemon.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: L'id du pokemon a supprimer.
+          content:
+            application/json:
+              schema:
+                type: integer
+                minimum: 1
+      responses:
+        '200':
+          description: Les informations du pokemon supprime.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  nom:
+                    type: string
+                  type:
+                    type: string
+                  pv:
+                    type: integer
+                example:
+                  id: 20
+                  nom: 'Charmander'
+                  type: 'feu'
+                  pv: 40
+    put:
+      tags:
+        - Pokemon
+      summary: Modifier un pokemon.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: L'id du pokemon a modifier.
+          content:
+            application/json:
+              schema:
+                type: integer
+                minimum: 1
+      requestBody:
+        description: Les nouvelles informations du pokemon.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nom:
+                  type: string
+                type:
+                  type: string
+                pv:
+                  type: integer
+              example:
+                nom: 'pikachu'
+                type: 'electricite'
+                pv: 100
+      responses:
+        '200':
+          description: Les informations du pokemon modifie.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  nom:
+                    type: string
+                  type:
+                    type: string
+                  pv:
+                    type: integer
+                example:
+                  id: 20
+                  nom: 'pikachu'
+                  type: 'electricite'
+                  pv: 100
+
+
+
+
+  
