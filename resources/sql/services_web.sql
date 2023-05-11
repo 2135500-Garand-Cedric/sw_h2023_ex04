@@ -90,16 +90,6 @@ ALTER TABLE `pokemon`
 ALTER TABLE `usagers`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `salutations`
---
-ALTER TABLE `salutations`
-  ADD CONSTRAINT `salutations_ibfk_1` FOREIGN KEY (`langue_id`) REFERENCES `langages` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
